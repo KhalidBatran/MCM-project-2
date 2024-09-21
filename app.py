@@ -13,7 +13,7 @@ navbar = dbc.Navbar(
         [
             dbc.Row(
                 [
-                    dbc.Col(html.Img(src=logo, height="30px"), width="auto", style={"paddingRight": "0", "paddingLeft": "0"}),
+                    dbc.Col(html.Img(src=logo, height="30px"), width="auto", style={"paddingLeft": "20px"}),  # Add padding
                     dbc.Col(
                         dbc.Nav(
                             [
@@ -22,22 +22,20 @@ navbar = dbc.Navbar(
                                 dbc.NavLink("Fig2", href="#fig2", className="nav-link"),
                                 dbc.NavLink("Fig3", href="#fig3", className="nav-link"),
                             ],
-                            className="ms-2", navbar=True, style={"paddingLeft": "0"}
+                            className="ms-2", navbar=True
                         ),
-                        width="auto", style={"paddingLeft": "0"}
+                        width="auto"
                     ),
                 ],
                 align="center",
-                className="g-0",
-                style={"width": "100%"}  # Make sure the row takes the full width
+                className="g-0"
             ),
         ],
         fluid=True,
-        style={"paddingLeft": "0", "paddingRight": "0"}  # Remove padding inside the container
     ),
     color="dark",
     dark=True,
-    style={"paddingLeft": "0", "paddingRight": "0"}  # Remove padding in the navbar
+    style={"fontSize": "16px", "fontFamily": "Arial, sans-serif"}  # Adjust the font here
 )
 
 app.layout = html.Div([
@@ -57,20 +55,20 @@ def render_page_content(pathname):
         return html.Div([html.H1('Figure 1 Page Content')])
     # Continue adding elif for other pages as necessary
 
-# Adding custom CSS for nav elements
+# Custom CSS for active nav elements
 app.clientside_callback(
     """
     function(href) {
         const links = document.querySelectorAll('.nav-link');
         links.forEach(link => {
             if (link.href === window.location.href) {
-                link.style.backgroundColor = '#6c757d';  // grey background for active
-                link.style.borderRadius = '15px';  // rounded corners
-                link.style.color = 'white';  // white text
-                link.style.padding = '5px 10px';  // Padding for aesthetics
+                link.style.backgroundColor = '#404040';  // Adjusted grey color
+                link.style.borderRadius = '15px';
+                link.style.color = 'white';
+                link.style.padding = '5px 10px';
             } else {
                 link.style.backgroundColor = '';
-                link.style.color = 'white';  // white text for non-active
+                link.style.color = 'white';
                 link.style.borderRadius = '';
                 link.style.padding = '';
             }
