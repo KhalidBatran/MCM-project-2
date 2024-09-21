@@ -6,4 +6,4 @@ import plotly.express as px
 
 server = app.server
 
-df = pd.read_csv("https://raw.githubusercontent.com/KhalidBatran/MCM-Final-Project/main/assets/Olympics%202024.csv")
+df = pd.read_csv("https://raw.githubusercontent.com/KhalidBatran/MCM-project-2/refs/heads/main/assets/lfs_year.csv")
