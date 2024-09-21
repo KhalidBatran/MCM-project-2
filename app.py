@@ -13,19 +13,23 @@ navbar = dbc.Navbar(
         [
             dbc.Row(
                 [
-                    dbc.Col(html.Img(src=logo, height="30px"), width="auto"),
-                    dbc.Nav(
-                        [
-                            dbc.NavLink("Home", href="#home", active="exact", className="nav-link"),
-                            dbc.NavLink("Fig1", href="#fig1", active="exact", className="nav-link"),
-                            dbc.NavLink("Fig2", href="#fig2", active="exact", className="nav-link"),
-                            dbc.NavLink("Fig3", href="#fig3", active="exact", className="nav-link"),
-                        ],
-                        className="ms-2", navbar=True
+                    dbc.Col(html.Img(src=logo, height="30px"), width="auto", style={"paddingRight": "0"}),
+                    dbc.Col(
+                        dbc.Nav(
+                            [
+                                dbc.NavLink("Home", href="#home", active="exact", className="nav-link"),
+                                dbc.NavLink("Fig1", href="#fig1", active="exact", className="nav-link"),
+                                dbc.NavLink("Fig2", href="#fig2", active="exact", className="nav-link"),
+                                dbc.NavLink("Fig3", href="#fig3", active="exact", className="nav-link"),
+                            ],
+                            className="ms-2", navbar=True
+                        ),
+                        width="auto"
                     ),
                 ],
                 align="center",
                 className="g-0",
+                no_gutters=True,  # This removes the gutter spacing between columns
             ),
         ],
         fluid=True,
@@ -61,6 +65,7 @@ app.clientside_callback(
         links.forEach(link => {
             if (link.href === window.location.href) {
                 link.style.backgroundColor = '#6c757d';  // grey background for active
+                link.style.borderRadius = '15px';  // rounded corners
                 link.style.color = 'white';  // white text
             } else {
                 link.style.backgroundColor = '';
