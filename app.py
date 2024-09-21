@@ -1,54 +1,45 @@
 import dash
 import dash_bootstrap_components as dbc
 from dash import dcc, html
-from dash.dependencies import Input, Output  # Ensure this line is added
+from dash.dependencies import Input, Output
 
+# Initialize Dash app with external Bootstrap CSS
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
-logo = "assets/MMU_Logo.png"
+# IMPORTANT: Define server to expose for Gunicorn
+server = app.server
 
-navbar = dbc.Navbar(
-    dbc.Container(
-        [
-            dbc.Row(
-                [
-                    dbc.Col(html.Img(src=logo, height="30px"), width="auto"),
-                    dbc.Col(dbc.NavbarBrand("OpenDOSM", className="ms-2"), width="auto"),
-                    dbc.Nav(
-                        [
-                            dbc.NavLink("Home", href="#home", active="exact"),
-                            dbc.NavLink("Fig1", href="#fig1", active="exact"),
-                            dbc.NavLink("Fig2", href="#fig2", active="exact"),
-                            dbc.NavLink("Fig3", href="#fig3", active="exact"),
-                        ], className="ms-auto", navbar=True
-                    ),
-                ],
-                align="center",
-                className="g-0",
-            ),
-        ],
-        fluid=True,
-    ),
-    color="dark",
-    dark=True,
-)
-
+# Define your app layout and callbacks below this
+# Example Layout
 app.layout = html.Div([
+    dbc.NavbarSimple(
+        brand="Example App",
+        brand_href="/",
+        color="primary",
+        dark=True,
+        children=[
+            dbc.NavItem(dbc.NavLink("Home", href="/")),
+            dbc.NavItem(dbc.NavLink("Page 1", href="/page-1")),
+        ]
+    ),
     dcc.Location(id='url', refresh=False),
-    navbar,
     html.Div(id='page-content')
 ])
 
+# Example callback to handle page routing
 @app.callback(
     Output('page-content', 'children'),
     [Input('url', 'pathname')]
 )
-def render_page_content(pathname):
-    if pathname == "#home":
-        return html.Div([html.H1('Home Page Content')])
-    elif pathname == "#fig1":
-        return html.Div([html.H1('Figure 1 Page Content')])
-    # Continue adding elif for other pages as necessary
+def display_page(pathname):
+    if pathname == '/page-1':
+        return html.Div([
+            html.H1('Page 1')
+        ])
+    else:
+        return html.Div([
+            html.H1('Home Page')
+        ])
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run_server(debug=True)
