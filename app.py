@@ -7,16 +7,11 @@ import plotly.express as px
 # Initialize the Dash app with Bootstrap
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
-# Define the path to your dataset
-data_path = "/assets/lfs_year.csv"
-
-# Load the dataset
+# Define the path to your dataset and load it
 df = pd.read_csv("https://raw.githubusercontent.com/KhalidBatran/MCM-project-2/main/assets/lfs_year.csv")
 
-# Define the logo (assuming you have a relative path to the logo image in your assets folder)
-logo = "/assets/MMU_Logo.png"  # Change the path to your actual logo path
-
-# Define the navbar
+# Define the logo and navbar
+logo = "assets/MMU_Logo.png"
 navbar = dbc.Navbar(
     dbc.Container(
         [
@@ -30,7 +25,8 @@ navbar = dbc.Navbar(
                             dbc.NavLink("Fig1", href="#", active="exact"),
                             dbc.NavLink("Fig2", href="#", active="exact"),
                             dbc.NavLink("Fig3", href="#", active="exact"),
-                        ], className="ms-auto", navbar=True
+                        ],
+                        className="ms-auto", navbar=True
                     ),
                     dbc.Col(
                         [
@@ -53,11 +49,10 @@ navbar = dbc.Navbar(
 # Define the layout of your app
 app.layout = html.Div([
     navbar,
-    # Placeholder for page content
     html.Div(id='page-content', children=[])
 ])
 
-# Callback to switch themes
+# Callback for theme switching
 @app.callback(
     Output('page-content', 'children'),
     [Input('btn-light', 'n_clicks'), Input('btn-dark', 'n_clicks')]
@@ -68,6 +63,9 @@ def switch_theme(btn_light, btn_dark):
         return html.Div("Light theme content")
     elif 'btn-dark' in changed_id:
         return html.Div("Dark theme content")
+
+# Expose the server variable for Gunicorn
+server = app.server
 
 # Run the app
 if __name__ == "__main__":
