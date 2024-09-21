@@ -13,38 +13,38 @@ navbar = dbc.Navbar(
         [
             dbc.Row(
                 [
-                    dbc.Col(html.Img(src=logo, height="30px"), width="auto", style={"paddingRight": "0"}),
+                    dbc.Col(html.Img(src=logo, height="30px"), width="auto", style={"paddingRight": "0", "paddingLeft": "0"}),
                     dbc.Col(
                         dbc.Nav(
                             [
-                                dbc.NavLink("Home", href="#home", active="exact", className="nav-link"),
-                                dbc.NavLink("Fig1", href="#fig1", active="exact", className="nav-link"),
-                                dbc.NavLink("Fig2", href="#fig2", active="exact", className="nav-link"),
-                                dbc.NavLink("Fig3", href="#fig3", active="exact", className="nav-link"),
+                                dbc.NavLink("Home", href="#home", className="nav-link"),
+                                dbc.NavLink("Fig1", href="#fig1", className="nav-link"),
+                                dbc.NavLink("Fig2", href="#fig2", className="nav-link"),
+                                dbc.NavLink("Fig3", href="#fig3", className="nav-link"),
                             ],
-                            className="ms-2", navbar=True
+                            className="ms-2", navbar=True, style={"paddingLeft": "0"}
                         ),
-                        width="auto"
+                        width="auto", style={"paddingLeft": "0"}
                     ),
                 ],
                 align="center",
                 className="g-0",
-                no_gutters=True,  # This removes the gutter spacing between columns
+                style={"width": "100%"}  # Make sure the row takes the full width
             ),
         ],
         fluid=True,
+        style={"paddingLeft": "0", "paddingRight": "0"}  # Remove padding inside the container
     ),
     color="dark",
     dark=True,
+    style={"paddingLeft": "0", "paddingRight": "0"}  # Remove padding in the navbar
 )
 
-# Custom styles
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
     navbar,
     html.Div(id='page-content')
-],
-style={'fontFamily': 'Arial'})
+])
 
 @app.callback(
     Output('page-content', 'children'),
@@ -57,7 +57,7 @@ def render_page_content(pathname):
         return html.Div([html.H1('Figure 1 Page Content')])
     # Continue adding elif for other pages as necessary
 
-# Adding custom CSS for active nav elements
+# Adding custom CSS for nav elements
 app.clientside_callback(
     """
     function(href) {
@@ -67,9 +67,12 @@ app.clientside_callback(
                 link.style.backgroundColor = '#6c757d';  // grey background for active
                 link.style.borderRadius = '15px';  // rounded corners
                 link.style.color = 'white';  // white text
+                link.style.padding = '5px 10px';  // Padding for aesthetics
             } else {
                 link.style.backgroundColor = '';
-                link.style.color = '';  // revert on non-active
+                link.style.color = 'white';  // white text for non-active
+                link.style.borderRadius = '';
+                link.style.padding = '';
             }
         });
     }
