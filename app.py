@@ -1,10 +1,10 @@
 import dash
 import dash_bootstrap_components as dbc
 from dash import dcc, html
+from dash.dependencies import Input, Output  # Ensure this line is added
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
-# Correctly pointing to the renamed logo file
 logo = "assets/MMU_Logo.png"
 
 navbar = dbc.Navbar(
@@ -48,7 +48,7 @@ def render_page_content(pathname):
         return html.Div([html.H1('Home Page Content')])
     elif pathname == "#fig1":
         return html.Div([html.H1('Figure 1 Page Content')])
-    # Add more conditions for other figures or pages
+    # Continue adding elif for other pages as necessary
 
 if __name__ == "__main__":
     app.run_server(debug=True)
