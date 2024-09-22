@@ -59,7 +59,7 @@ def update_nav_active(pathname):
 def render_page_content(pathname):
     if pathname == "/home":
         return html.Div([
-            html.H1("Annual Principal Labour Force Statistics", className="text-center"),
+            html.H1("Olympics 2024 Data", className="text-center"),
             html.P(
                 "This project uses Python to create clear and interactive charts that show important information about jobs and unemployment each year. We take complex data and make it easy to understand and explore, helping people see how many people are working, how many are looking for jobs, and the trends over time. This makes it easier for everyone to understand what's happening in the job market.",
                 className="text-center"
