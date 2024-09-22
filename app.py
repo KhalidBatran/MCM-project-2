@@ -123,8 +123,8 @@ def render_page_content(pathname):
     if pathname == "/home":
         return html.Div([
             html.H1("Welcome to the Olympics 2024 Dashboard", className="text-center"),
-            html.P("Explore various insights into the Olympics 2024 through interactive visualizations.", className="text-center"),
-            dbc.Button("Explore", color="primary", href="/fig1", className="mt-4")
+            html.P("This dashboard gives a detailed look at the 2024 Olympic Games, showing how medals were won across different countries, sports, and athletes. The data includes information about each athlete, the country they represented, their gender, and the type of medal they won—Gold, Silver, or Bronze. You can explore which countries performed best, see how medal totals changed over time, and compare performances between male and female athletes. The dashboard helps you understand the overall results of the Olympics, highlighting not only the top countries but also the individual sports that contributed to their success. It’s a great way to explore the achievements of athletes and see how different nations competed in the 2024 Games."),
+            dbc.Button("Let's Have A Look", color="primary", href="/fig1", className="mt-4")
         ])
     elif pathname == "/fig1":
         return html.Div(dcc.Graph(figure=get_fig1()), id='fig1-container', className='figure1')
