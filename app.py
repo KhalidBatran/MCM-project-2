@@ -1,13 +1,14 @@
-import dash
-import dash_bootstrap_components as dbc
 from dash import dcc, html, Input, Output
 import plotly.express as px
 import pandas as pd
+import dash
+import dash_bootstrap_components as dbc
 
+# App Initialization
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP], suppress_callback_exceptions=True)
 server = app.server
 
-# Loading the data
+# Data Loading and Preparation
 df = pd.read_csv("https://raw.githubusercontent.com/KhalidBatran/MCM-project-2/refs/heads/main/assets/Olympics%202024.csv")
 
 # Prepare the data for the figures
@@ -19,7 +20,9 @@ medal_summary = df.groupby(['Country Code', 'Medal Date'])['Medal Type'].count()
 
 athlete_medals = df.groupby(['Gender', 'Athlete Name', 'Medal Type']).size().reset_index(name='Count')
 
-# Figures
+# Layout and Callbacks for each Figure
+
+# Figure 1: Olympic Medals Distribution (Bar Chart)
 def get_fig1():
     fig = px.bar(
         medal_counts, 
@@ -36,6 +39,7 @@ def get_fig1():
     )
     return fig
 
+# Figure 2: Medal Distribution by Country Over Time (Scatter Plot)
 def get_fig2():
     fig = px.scatter(
         medal_summary,
@@ -49,6 +53,7 @@ def get_fig2():
     )
     return fig
 
+# Figure 3: Medal Distribution by Gender and Athletes (Treemap)
 def get_fig3():
     fig = px.treemap(
         athlete_medals,
@@ -60,6 +65,7 @@ def get_fig3():
     )
     return fig
 
+# Navbar and Layout
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
     dbc.Navbar(
@@ -86,6 +92,7 @@ app.layout = html.Div([
     html.Div(id='page-content', style={'position': 'absolute', 'top': '50%', 'left': '50%', 'transform': 'translate(-50%, -50%)'})  # Central content
 ])
 
+# Callback to Highlight Active Navbar Link
 @app.callback(
     [Output('nav-home', 'className'),
      Output('nav-fig1', 'className'),
@@ -96,7 +103,7 @@ app.layout = html.Div([
 def update_nav_active(pathname):
     base_class = 'nav-link'
     active_class = 'nav-link active'
-    links = [base_class] * 4  # Default to all links not active
+    links = [base_class] * 4  # Default all links to not active
     if pathname == '/home':
         links[0] = active_class
     elif pathname == '/fig1':
@@ -107,6 +114,7 @@ def update_nav_active(pathname):
         links[3] = active_class
     return links
 
+# Page Content Rendering Callback
 @app.callback(
     Output('page-content', 'children'),
     [Input('url', 'pathname')]
@@ -119,13 +127,14 @@ def render_page_content(pathname):
             dbc.Button("Explore", color="primary", href="/fig1", className="mt-4")
         ])
     elif pathname == "/fig1":
-        return html.Div(dcc.Graph(figure=get_fig1()), id='fig1-container', className='figure1')  # Apply figure1 style
+        return html.Div(dcc.Graph(figure=get_fig1()), id='fig1-container', className='figure1')
     elif pathname == "/fig2":
-        return html.Div(dcc.Graph(figure=get_fig2()), id='fig2-container', className='figure2')  # Apply figure2 style
+        return html.Div(dcc.Graph(figure=get_fig2()), id='fig2-container', className='figure2')
     elif pathname == "/fig3":
-        return html.Div(dcc.Graph(figure=get_fig3()), id='fig3-container', className='figure3')  # Apply figure3 style
+        return html.Div(dcc.Graph(figure=get_fig3()), id='fig3-container', className='figure3')
     else:
-        return "404 Page Not Found"  # Handling undefined routes
+        return "404 Page Not Found"  # Handle undefined routes
 
+# Run the App
 if __name__ == "__main__":
     app.run_server(debug=True)
