@@ -4,13 +4,18 @@ body {
     margin: 0;
     padding: 0;
     text-align: center;
+    font-size: 13px;
 }
 
 .navbar {
+    position: fixed;
+    top: 90px;
+    left: 0;
+    right: 0;
     background-color: #FFFFFF;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     border-radius: 10px;
-    width: 98%;
+    width: 99%;
     margin: 0 auto;
     position: relative;
     top: 10px;
@@ -47,4 +52,58 @@ p {
 .nav-link.active {
     color: #006eff !important; /* Keeps the blue color on active state */
     text-decoration: underline !important; /* Ensures the underline is shown */
+}
+
+.figure1 {
+    position: absolute;
+    top: -60px;  /* Center vertically */
+    left: -415px; /* Center horizontally */
+    width: 1430px ; /* Example width, adjust as needed */
+    height: 400px; /* Example height, adjust as needed */
+    margin-top: -200px; /* Half of height */
+    margin-left: -300px; /* Half of width */
+    box-shadow: 0 60px 12px rgba(0,0,0,0.1);
+    /* Add more styling here if needed */
+  }  
+  
+.figure2 {
+    position: absolute;
+    top: -60px;  /* Center vertically */
+    left: -415px; /* Center horizontally */
+    width: 1430px ; /* Example width, adjust as needed */
+    height: 400px; /* Example height, adjust as needed */
+    margin-top: -200px; /* Half of height */
+    margin-left: -300px; /* Half of width */
+    box-shadow: 0 60px 12px rgba(0,0,0,0.1);
+    /* Add more styling here if needed */
+  }  
+
+.figure3 {
+    position: absolute;
+    top: -60px;  /* Center vertically */
+    left: -415px; /* Center horizontally */
+    width: 1430px ; /* Example width, adjust as needed */
+    height: 400px; /* Example height, adjust as needed */
+    margin-top: -200px; /* Half of height */
+    margin-left: -300px; /* Half of width */
+    box-shadow: 0 60px 12px rgba(0,0,0,0.1);
+    /* Add more styling here if needed */
+  }  
+
+.body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.filter-row {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.filter-dropdown {
+    margin: 0 auto;
+    max-width: 300px;  /* Adjust width as needed */
 }
