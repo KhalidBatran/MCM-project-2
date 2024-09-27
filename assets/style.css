@@ -140,6 +140,7 @@ p {
     height: calc(100vh - 60px); /* Adjust 60px to match your navbar height */
     text-align: center;
     padding: 20px;
+    margin-top: -5vh; /* This will push the content up by 5% of the viewport height */
 }
 
 .home-content h1 {
