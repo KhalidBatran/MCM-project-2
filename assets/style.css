@@ -5,6 +5,12 @@ body {
     padding: 0;
     text-align: center;
     font-size: 13px;
+    overflow: hidden;
+}
+
+#page-content {
+    height: calc(170vh - 60px); /* Adjust 60px to match your navbar height */
+    overflow: hidden;
 }
 
 .navbar {
@@ -19,6 +25,8 @@ body {
     margin: 0 auto;
     position: relative;
     top: 10px;
+    padding: 5px 0;
+    height: 60px; /* Set this to match your navbar height */
 }
 
 .navbar-brand, .nav-link {
@@ -67,16 +75,15 @@ p {
   }  
   
 .figure2 {
-    position: absolute;
-    top: -60px;  /* Center vertically */
-    left: -415px; /* Center horizontally */
-    width: 1430px ; /* Example width, adjust as needed */
-    height: 400px; /* Example height, adjust as needed */
-    margin-top: -200px; /* Half of height */
-    margin-left: -300px; /* Half of width */
-    box-shadow: 0 60px 12px rgba(0,0,0,0.1);
-    /* Add more styling here if needed */
-  }  
+    position: absolute !important;
+    top: 295px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 1430px !important;
+    height: 80vh !important;
+    margin-top: -200px !important;
+    box-shadow: 0 10px 7px rgba(0,0,0,0.1) !important;
+}
 
 .figure3 {
     position: absolute;
@@ -98,12 +105,48 @@ p {
     text-align: center;
 }
 
+.figure-container {
+    width: 100%;
+    height: 600px;
+    margin-top: 20px;
+}
+
 .filter-row {
     margin-top: 20px;
     margin-bottom: 20px;
+    width: 100%;
 }
 
 .filter-dropdown {
-    margin: 0 auto;
-    max-width: 300px;  /* Adjust width as needed */
+    width: 100%;
+}
+
+/* Remove or adjust these styles if they're causing issues */
+.figure1, .figure2, .figure3 {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.home-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 60px); /* Adjust 60px to match your navbar height */
+    text-align: center;
+    padding: 20px;
+}
+
+.home-content h1 {
+    margin-bottom: 20px;
+}
+
+.home-content p {
+    max-width: 800px;
+    margin-bottom: 20px;
 }
