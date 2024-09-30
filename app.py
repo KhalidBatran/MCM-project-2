@@ -14,11 +14,8 @@ server = app.server
 # Load the dataset
 df = pd.read_csv('https://raw.githubusercontent.com/KhalidBatran/MCM-project-2/refs/heads/main/assets/crime_district.csv')
 
-# Convert Incident Date to numerical Year
+# Directly convert the 'Incident Date' to the 'Year' without date parsing, since it's already in year format
 df['Year'] = pd.to_numeric(df['Incident Date'], errors='coerce')
-
-# Filter out rows where Year is missing
-df = df[df['Year'].notna()]
 
 # Ensure all states are included even if they are missing data for some categories
 states = df['State'].unique()
@@ -55,7 +52,7 @@ def create_map(selected_state=None):
 
     return fig
 
-# Function to create the scatter plot with animation and gridlines
+# Function to create the scatter plot with animation
 def create_scatter_plot():
     fig = px.scatter(df, x='Reported Crimes', y='State', animation_frame='Year', animation_group='State',
                      size='Reported Crimes', color='Crime Category', hover_name='State', facet_col='Crime Category',
@@ -68,8 +65,13 @@ def create_scatter_plot():
         xaxis_title='Reported Crimes',  # Label for x-axis
         yaxis_title='State',  # Label for y-axis
         plot_bgcolor="rgba(0, 0, 0, 0)",  # Transparent background
-        paper_bgcolor="rgba(0, 0, 0, 0)"  # Transparent background for paper
+        paper_bgcolor="rgba(0, 0, 0, 0)",  # Transparent background for paper
+        margin=dict(l=0, r=0, t=0, b=0)   # Adjust the margins to reduce whitespace
     )
+    
+    # Apply the same gridline settings to both facets (left and right sides)
+    fig.update_xaxes(showgrid=True, gridcolor='lightgray', matches='x')
+    fig.update_yaxes(showgrid=True, gridcolor='lightgray', matches='y')
 
     return fig
 
@@ -107,7 +109,7 @@ app.layout = dbc.Container([
     ]),
 
     # Choropleth map (Figure 1) to be rendered here
-    dbc.Row([
+    dbc.Row([    
         dbc.Col(dcc.Graph(id='choropleth-map'), width=12)
     ]),
 
