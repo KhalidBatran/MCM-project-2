@@ -12,7 +12,7 @@ app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 server = app.server
 
 # Load the dataset
-df = pd.read_csv('https://raw.githubusercontent.com/KhalidBatran/MCM-project-2/refs/heads/main/assets/crime_district.csv')
+df = pd.read_csv('https://raw.githubusercontent.com/KhalidBatran/MCM-project-2/refs/heads/main/assets/Malaysia%20Crime%20District.csv')
 
 # Directly convert the 'Incident Date' to the 'Year' without date parsing, since it's already in year format
 df['Year'] = pd.to_numeric(df['Incident Date'], errors='coerce')
