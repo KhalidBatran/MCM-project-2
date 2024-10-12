@@ -22,6 +22,13 @@ app.layout = dbc.Container([
         dbc.Col(html.H1("Spotify Data Visualizations", className="text-center")),
     ]),
 
+    # Conclusion under the title
+    dbc.Row([
+        dbc.Col(html.Div([
+            html.P("This interactive Spotify data visualization app provides insights into song popularity trends across various genres and artists. The scatter plot explores the relationship between song length and popularity, while the line chart highlights artist popularity over time, with the ability to filter by individual artists. The bar chart compares average popularity by genre, and users can hover to see detailed popularity trends over the years. Overall, the app offers a dynamic, engaging way to explore music trends, enabling users to easily analyze relationships between song features, genres, and artists.")
+        ]), width=12)
+    ]),
+
     # Scatter plot: Song Length vs Popularity
     dbc.Row([
         dbc.Col(html.H3("Song Length vs Popularity Scatter Plot", className="text-center")),
