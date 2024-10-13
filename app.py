@@ -101,8 +101,17 @@ def display_page(pathname):
         return [dbc.Row(
             dbc.Col(
                 html.Div([
-                    html.H3("Animal Shelter Data Dashboard", className="text-center"),
-                    html.P("Conclustion Over Here For Later.", className="text-center")
+                    html.H3("Animal Shelter Data Dashboard", className="text-center mb-4"),
+                    html.P(
+                        "This dashboard provides key insights into animal shelter data, including the most common breeds housed annually, daily intake trends, and the primary methods of intake, such as strays or owner surrenders. By visualizing these aspects, users can easily identify patterns in the shelter’s operations and understand which animal types and breeds are more prevalent. These insights are designed to assist shelter management in making informed decisions to improve animal care and optimize resource allocation.",
+                        className="text-center",
+                        style={
+                            'maxWidth': '800px',
+                            'margin': '0 auto',
+                            'lineHeight': '1.6',
+                            'fontSize': '16px'
+                        }
+                    )
                 ], className="d-flex flex-column justify-content-center align-items-center", style={'height': '100%'}),
                 width=12
             ),
